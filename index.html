@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>2D 스타일 그림 프롬프트 생성기</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f3f5;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #343a40;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      padding: 40px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      text-align: center;
+      color: #343a40;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
+    button {
+      display: inline-block;
+      width: 48%;
+      padding: 15px;
+      font-size: 16px;
+      background-color: #228be6;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:nth-child(2) {
+      background-color: #495057;
+    }
+    #output, #summary {
+      margin-top: 30px;
+      background: #e9ecef;
+      padding: 20px;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎨 2D 스타일 드로잉 아이디어 & 프롬프트 생성기</h1>
+  </header>
+  <main>
+    <div class="section">
+      <label for="style">1. 기본 스타일</label>
+      <select id="style">
+        <option value="">선택되지 않음</option>
+        <option>Flat design - 플랫 디자인</option>
+        <option>Minimalist - 미니멀리스트</option>
+        <option>Cartoonish - 만화 같은</option>
+        <option>Anime style - 애니메이션 스타일</option>
+        <option>Pixel art - 픽셀 아트</option>
+        <option>Line art - 라인 아트</option>
+        <option>Studio Ghibli - 지브리 스타일</option>
+        <option>Abstract - 추상적인</option>
+      </select>
+
+      <label for="composition">2. 구성</label>
+      <select id="composition">
+        <option value="">선택되지 않음</option>
+        <option>Central Focus - 중앙집중</option>
+        <option>Rule of Thirds - 삼분법</option>
+        <option>Symmetrical - 대칭</option>
+        <option>Triangular - 삼각</option>
+        <option>Framing - 프레이밍</option>
+      </select>
+
+      <label for="detail">3. 세부 수준</label>
+      <select id="detail">
+        <option value="">선택되지 않음</option>
+        <option>Simple Sketch - 간단한 스케치</option>
+        <option>Partially Developed - 부분적 개발</option>
+        <option>Highly Detailed - 매우 상세</option>
+      </select>
+
+      <label for="elements">4. 요소의 수</label>
+      <select id="elements">
+        <option value="">선택되지 않음</option>
+        <option>Single Object - 단일 객체</option>
+        <option>Few Elements - 몇 가지 요소</option>
+        <option>Multiple Figures - 여러 인물</option>
+        <option>Complex Scene - 복잡한 장면</option>
+        <option>Panorama - 파노라마</option>
+      </select>
+
+      <label for="mood">5. 분위기와 톤</label>
+      <select id="mood">
+        <option value="">선택되지 않음</option>
+        <option>Vibrant colors - 생동감 있는 색감</option>
+        <option>Pastel tones - 파스텔 톤</option>
+        <option>Dark - 어두운</option>
+        <option>Mysterious - 미스테리한</option>
+        <option>Happy - 행복한</option>
+        <option>Peaceful - 평화로운</option>
+        <option>Romantic - 로맨틱</option>
+      </select>
+
+      <label for="background">6. 배경</label>
+      <select id="background">
+        <option value="">선택되지 않음</option>
+        <option>Nature scene - 자연 경치</option>
+        <option>Fantasy setting - 판타지 설정</option>
+        <option>Medieval - 중세</option>
+        <option>Cyberpunk - 사이버펑크</option>
+        <option>Cityscape - 도시 풍경</option>
+        <option>Abstract background - 추상적 배경</option>
+      </select>
+
+      <label for="character">7. 캐릭터 묘사</label>
+      <select id="character">
+        <option value="">선택되지 않음</option>
+        <option>Chibi style - 치비 스타일</option>
+        <option>Stylized figure - 스타일화된 인물</option>
+        <option>Dynamic pose - 역동적 포즈</option>
+        <option>Exaggerated proportions - 과장된 비율</option>
+        <option>Detailed costumes - 디테일한 의상</option>
+      </select>
+
+      <label for="texture">8. 질감</label>
+      <select id="texture">
+        <option value="">선택되지 않음</option>
+        <option>Watercolor - 수채화</option>
+        <option>Oil painting - 유화</option>
+        <option>Pencil - 연필</option>
+        <option>Crayon texture - 크레용 질감</option>
+        <option>Digital - 디지털</option>
+      </select>
+
+      <label for="effect">9. 추가 효과</label>
+      <select id="effect">
+        <option value="">선택되지 않음</option>
+        <option>Glow effect - 빛나는 효과</option>
+        <option>Foggy overlay - 안개 오버레이</option>
+        <option>Sparkles and highlights - 반짝임과 하이라이트</option>
+        <option>Shadow gradients - 그림자 그라데이션</option>
+      </select>
+
+      <label for="camera">10. 카메라 앵글</label>
+      <select id="camera">
+        <option value="">선택되지 않음</option>
+        <option>Eye level - 눈높이 시점</option>
+        <option>Bird's eye view - 탑다운 시점</option>
+        <option>Low angle - 하단 시점</option>
+        <option>Over-the-shoulder - 어깨너머 시점</option>
+      </select>
+
+      <label for="lighting">11. 조명</label>
+      <select id="lighting">
+        <option value="">선택되지 않음</option>
+        <option>Soft lighting - 부드러운 조명</option>
+        <option>Neon glow - 네온 빛</option>
+        <option>Sunset lighting - 노을빛</option>
+        <option>Silhouette lighting - 실루엣 조명</option>
+      </select>
+
+      <button onclick="generatePrompt()">🎨 제너레잇</button>
+      <button onclick="randomizePrompt()">🎲 랜덤 생성</button>
+      <div id="output"></div>
+      <h2>📝 선택된 키워드 요약</h2>
+      <div id="summary"></div>
+    </div>
+  </main>
+
+  <script>
+    const fields = ['style','composition','detail','elements','mood','background','character','texture','effect','camera','lighting'];
+
+    function generatePrompt() {
+      let prompt = '2D illustration in';
+      let summary = '';
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        const val = el.value;
+        if (val) {
+          prompt += `, ${val}`;
+          summary += `• ${val}\n`;
+        }
+      });
+      document.getElementById('output').innerText = prompt;
+      document.getElementById('summary').innerText = summary;
+    }
+
+    function randomizePrompt() {
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        const options = el.options;
+        const randomIndex = Math.floor(Math.random() * (options.length - 1)) + 1;
+        el.selectedIndex = randomIndex;
+      });
+      generatePrompt();
+    }
+  </script>
+</body>
+</html>
